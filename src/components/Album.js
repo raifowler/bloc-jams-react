@@ -40,6 +40,7 @@ class Album extends Component {
     if (this.state.isPlaying && isSameSong) {
       this.pause();
     } else {
+      if (!isSameSong) { this.setSong(song); }
       this.play();
     }
   }
@@ -64,12 +65,10 @@ class Album extends Component {
           <tbody>
             {
               this.state.album.songs.map( (song, index) =>
-                <tr>
-                  <Link to={`/album/${song.audioSrc}`} key={index}>
-                    <td>{index + 1}</td>
-                    <td>{song.title}</td>
-                    <td>{song.duration}</td>
-                  </Link>
+                <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
+                  <td>{index + 1}</td>
+                  <td>{song.title}</td>
+                  <td>{song.duration}</td>
                 </tr>
               )
             }
