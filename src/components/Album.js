@@ -1,6 +1,56 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
 
+function IconPlay(props) {
+  return (
+    <span className="icon ion-md-play"></span>
+  );
+}
+
+function IconPause(props) {
+  return (
+    <span className="icon ion-md-pause"></span>
+  );
+}
+
+function IconNumber(props) {
+  return (
+    <span>{props.index + 1}</span>
+  );
+}
+
+class Icon extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render () {
+    const hover = this.props.hover;
+    const isPlaying = this.props.isPlaying;
+    const currentSong = this.props.currentSong;
+    const hoverSong = this.props.hoverSong;
+    const index = this.props.index;
+    const song = this.props.song;
+    const isSameSong = hoverSong === song;
+    const sameSongPlaying = currentSong === song && isPlaying;
+    let icon;
+
+    if (hover && isSameSong && !sameSongPlaying) {
+      icon = <IconPlay />
+    } else if (sameSongPlaying) {
+      icon = <IconPause />
+    } else if (currentSong === song && !isPlaying) {
+      icon = <IconPlay />
+    } else {
+      icon = <IconNumber index={index} />
+    }
+
+    return (
+      <div>{icon}</div>
+    )
+  }
+}
+
 class Album extends Component {
   constructor(props) {
     super(props);
@@ -11,9 +61,10 @@ class Album extends Component {
 
     this.state = {
       album: album,
-      currentSong: album.songs[0],
+      currentSong: null,
+      hoverSong: null,
       isPlaying: false,
-      hover: false
+      hover: null,
     }; 
 
     this.audioElement = document.createElement('audio');
@@ -28,6 +79,16 @@ class Album extends Component {
   pause() {
     this.audioElement.pause();
     this.setState({ isPlaying: false });
+  }
+
+  onMouseOver(song) {
+    this.setState({ hover: true });
+    this.setState({ hoverSong: song });
+  }
+
+  onMouseOut() {
+    this.setState({ hover: false });
+    this.setState({ hoverSong: null });
   }
 
   setSong(song) {
@@ -65,8 +126,8 @@ class Album extends Component {
           <tbody>
             {
               this.state.album.songs.map( (song, index) =>
-                <tr className="song" key={index} onClick={(e) => {e.preventDefault(); this.handleSongClick(song)}} >
-                  <td>{index + 1}</td>
+                <tr className="song" key={index} onClick={(e) => {e.preventDefault(); this.handleSongClick(song)}} onMouseEnter={() => this.onMouseOver(song)} onMouseLeave={() => this.onMouseOut()} >
+                  <td><Icon song={song} index={index} hover={this.state.hover} hoverSong={this.state.hoverSong} isPlaying={this.state.isPlaying} currentSong={this.state.currentSong}/></td>
                   <td>{song.title}</td>
                   <td>{song.duration}</td>
                 </tr>
