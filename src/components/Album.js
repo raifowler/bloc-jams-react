@@ -47,7 +47,7 @@ class Icon extends Component {
     }
 
     return (
-      <div>{icon}</div>
+      <td>{icon}</td>
     )
   }
 }
@@ -152,16 +152,14 @@ class Album extends Component {
             {
               this.state.album.songs.map( (song, index) =>
                 <tr className="song" key={index} onClick={(e) => {e.preventDefault(); this.handleSongClick(song)}} onMouseEnter={() => this.onMouseOver(song)} onMouseLeave={() => this.onMouseOut()} >
-                  <td>
-                    <Icon 
-                      song={song} 
-                      index={index} 
-                      hover={this.state.hover} 
-                      hoverSong={this.state.hoverSong} 
-                      isPlaying={this.state.isPlaying} 
-                      currentSong={this.state.currentSong} 
-                    />
-                  </td>
+                  <Icon 
+                    song={song} 
+                    index={index} 
+                    hover={this.state.hover} 
+                    hoverSong={this.state.hoverSong} 
+                    isPlaying={this.state.isPlaying} 
+                    currentSong={this.state.currentSong} 
+                  />
                   <td>{song.title}</td>
                   <td>{song.duration}</td>
                 </tr>
