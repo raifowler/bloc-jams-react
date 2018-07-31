@@ -1,88 +1,288 @@
+/* Global */
+
+h1, h2, p {
+  margin: 0;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.5;
-  background-color: #e3f7d4;
 }
 
-.navbar {
+.container {
   width: 80%;
   margin: auto;
-  overflow: hidden;
-}
-
-header {
-  background-color: #091534;
-  color: #f4f4f4;
-  padding-top: 30px;
-  min-height: 70px;
-  border-bottom: #fc600a 3px solid;
 }
 
 .link {
-  color: #dddada;
   text-decoration: none;
+  color: #fff;
   text-transform: uppercase;
-  font-size: 16px;
-  float: left;
-  padding: 0 20px;
 }
 
 .link:hover {
   color: #66b032;
 }
 
-header h1 {
-  float: left;
-  margin: 0;
-}
-
-header nav {
-  float: right;
-  margin-top: 12px;
-}
-
-.landing {
-  margin: 0;
-  padding: 0;
-}
-
 .highlight {
   color: #66b032;
 }
 
-#landing-highlight {
-  min-height: 300px;
-  background: url('./assets/images/audio-dj-mix-63703.jpg') no-repeat 0 -400px;
+/* Header */
+
+header {
+  background: #091534;
+  border-bottom: #fc600a 3px solid;
+  padding: 10px 0;
+}
+
+.navbar {
   text-align: center;
+  color: #fff;
+}
+
+.navbar h1 {
+  padding: 10px 0;
+}
+
+.navbar nav .link {
+  display: block;
+  padding: 10px 20px;
+}
+
+
+/* Landing Page */
+
+#landing-page .container {
+  width: 100%;
+}
+
+#landing-highlight {
+  display: flex;
+  min-height: 100px;
+  background: url(./assets/images/audio-dj-mix-63703.jpg) no-repeat;
+  background-position-y: -400px;
 }
 
 .hero-title {
   margin: 0;
-  padding-top: 100px;
-  font-size: 55px;
+  text-align: center;
+  font-size: 1.75em;
   color: #66b032;
-}
-
-.selling-points {
-  width: 80%;
-  margin: auto;
+  text-shadow: #000 1px 1px;
 }
 
 .point {
-  float: left;
-  width: 30%;
+  box-sizing: border-box;
   text-align: center;
-  padding: 10px;
-  margin: 0px;
+  border-top: #000 solid 1px;
+  border-bottom: #000 solid 1px;
 }
 
 .point-title {
-  font-size: 24px;
-  text-transform: uppercase;
+  padding: 30px 10px 10px 10px;
 }
 
 .point-description {
-  font-size: 18px;
+  padding: 20px;
+  line-height: 1.4;
+}
+
+/* Library Page */
+
+.album-card {
+  box-sizing: border-box;
+  text-align: center;
+  margin: 20px auto 10px auto;
+  padding-bottom: 10px;
+  border: #000 solid 1px;
+  box-shadow: 4px 4px 10px #e4e4e4;
+  text-decoration: none;
+}
+
+.album-card img {
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+.album-link {
+  text-decoration: none;
+  color: #000;
+}
+
+.album-link:hover {
+  color: #0247fe;
+}
+
+
+/* Album Page */
+
+#album-detail {
+  margin: 10px auto;
+  border: #000 solid 1px;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 4px 4px 10px #e4e4e4;
+}
+
+#album-cover-art {
+  width: 100%;
+}
+
+#album-title {
+  padding: 5px;
+}
+
+.artist {
+  padding: 5px;
+}
+
+#release-info {
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+#song-list {
+  margin: 5px auto 10px auto;
+}
+
+.song-number {
+  padding: 0 10px;
+}
+
+.song-title {
+  text-align: left;
+}
+
+.song-duration {
+  padding: 0 10px;
+}
+
+.song:hover {
+  color: #0247fe;
+}
+
+
+/* Player Bar */
+
+#player-bar-container {
+  background: rgba(2, 71, 254, 0.7);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+#button-container {
+  width: 200px;
+  margin: auto;
+}
+
+#buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+#time-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  color: #fff;
+}
+
+#volume-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  color: #fff;
+}
+
+.seek-bar {
+  margin: 0 10px;
+}
+
+/* Media Queries */
+
+@media(max-width: 767px) {
+  #album-container {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+@media(min-width: 576px) {
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar nav .link {
+    display: inline-flex;
+  }
+
+  #landing-highlight {
+    min-height: 150px;
+    box-shadow: 0 4px 4px #e0e0e0;
+  }
+
+  .hero-title {
+    font-size: 2.5em;
+  }
+}
+
+@media(min-width: 768px) {
+  #landing-page .container {
+    width: 80%;
+  }
+
+  #selling-points {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+
+  .point {
+    flex-basis: 30%;
+    border: #000 solid 1px;
+    box-shadow: 4px 4px 10px #e4e4e4;
+  }
+
+  #album-container {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: space-between;
+  }
+
+  .album-card {
+    flex-basis: 50%;
+    max-width: 90%;
+  }
+
+  #player-bar {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    max-width: 600px;
+    align-items: center;
+  }
+  
+  #buttons {
+    flex: 1;
+    order: 2;
+    padding: 0 20px;
+  }
+  
+  #time-control {
+    flex: 1;
+    order: 1;
+  }
+  
+  #volume-control {
+    flex: 1;
+    order: 3;
+  }
 }

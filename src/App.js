@@ -8,9 +8,9 @@ import Album from './components/Album';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div id="App">
         <header>
-          <div className="navbar">
+          <div className="container navbar">
             <h1><span className="highlight">Bloc</span> Jams</h1>
             <nav>
               <Link to='/' className="link">Landing</Link>
